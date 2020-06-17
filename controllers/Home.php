@@ -410,6 +410,65 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 
 	}
 
+	function settings(){
+		$data['category']=$this->Store->getcategories();
+		$this->load->view('settings',$data);
+	}
+
+	function loadcategory($id){
+		$data['classes'] = $this->Store->loadClasses($id);
+		$data['category'] = $id;
+		$this->load->view('classes',$data);
+	}
+
+	function loadClass($id){
+		$data['subjects'] = $this->Store->loadSubjects($id);
+		$data['class'] = $id;
+		$this->load->view('subjects',$data);
+	}
+
+	function newcategory(){
+		$data = array(
+			'name' => $this->input->post('category')
+		);
+		$this->Store->addnewcategory($data);
+		redirect(site_url('home/settings'));
+	}
+
+	function newClass(){
+		$data = array(
+			'name' => $this->input->post('class'),
+			'subno' => $this->input->post('category')
+		);
+		$this->Store->addnewClass($data);
+		redirect(site_url('home/loadcategory/').$this->input->post('category'));
+	}
+
+	function newSubject(){
+		$data = array(
+			'name' => $this->input->post('subject'),
+			'subno' => $this->input->post('class')
+		);
+		$this->Store->addnewSubject($data);
+		redirect(site_url('home/loadclass/').$this->input->post('class'));
+	}
+
+
+	function deletesubject($id){
+		$this->Store->deleteSubject($id);
+		redirect(site_url('home/settings'));
+	}
+
+	function deleteclass($id){
+		$this->Store->deleteClass($id);
+		redirect(site_url('home/settings'));
+	}
+
+	function deletecategory($id){
+		$this->Store->deleteCategory($id);
+		redirect(site_url('home/settings'));
+	}
+
 
 
 }
