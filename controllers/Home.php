@@ -49,7 +49,6 @@ class Home extends CI_Controller
 
 	function selection()
 	{
-
 		$this->load->database();
 		if (isset($_POST['id']) && !empty($_POST['id'])) {
  		$sql="SELECT * FROM booksubsub WHERE subno=?";
@@ -160,7 +159,8 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 					'MRP'=> $_POST['mrp'],
 					'Discount'=> $_POST['discount'],
 					'image' => $img,
-					'backimg' =>$backimg
+					'backimg' =>$backimg,
+						  'charges' => $_POST['charges'],
                 );
                 $this->Store->insertbook($data);
                 redirect(site_url('home/inventory'));
@@ -170,8 +170,6 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 
 	function editbook($id)
 	{
-		$data['category']=$this->Store->getcategories();
-		$this->load->database();
 		$data['book']=$this->Store->getbookdetails($id);
 		$this->load->view('editbook',$data);
 	}
@@ -246,6 +244,8 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 					'MRP'=> $_POST['mrp'],
 					'Discount'=> $_POST['discount'],
 					'image' => $img,
+					  'charges' => $_POST['charges'],
+					  'availability' => $_POST['avail'],
 				);
 					$this->Store->updatebook($data,$_POST['bookid']);
 
@@ -303,6 +303,8 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 					'MRP'=> $_POST['mrp'],
 					'Discount'=> $_POST['discount'],
 					'backimg' => $backimg,
+					  'charges' => $_POST['charges'],
+					  'availability' => $_POST['avail'],
 				);
 					$this->Store->updatebook($data,$_POST['bookid']);
 			}
@@ -362,11 +364,13 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 					'MRP'=> $_POST['mrp'],
 					'Discount'=> $_POST['discount'],
 					'backimg' => $backimg,
+					  'charges' => $_POST['charges'],
+					  'availability' => $_POST['avail'],
 				);
 					$this->Store->updatebook($data,$_POST['bookid']);
 			}
 
-			
+
 			else
 			{
 				 $data=array(
@@ -382,6 +386,8 @@ if (isset($_POST['subid']) && !empty($_POST['subid'])) {
 					'Binding'=> $_POST['bind'],
 					'MRP'=> $_POST['mrp'],
 					'Discount'=> $_POST['discount'],
+					 'charges' => $_POST['charges'],
+					 'availability' => $_POST['avail'],
 				);
 					$this->Store->updatebook($data,$_POST['bookid']);
 			}

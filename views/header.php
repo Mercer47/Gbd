@@ -11,5 +11,7 @@
 <div class="col-md-3">
 	<a href="<?php echo site_url('home/orders'); ?>">Orders</a><br>
     <a href="<?php echo site_url('home/settings') ?>">Settings</a><br>
-	<a href="<?php echo site_url('home/inventory') ?>">Inventory</a>
+	<a href="<?php echo site_url('home/inventory') ?>">Inventory</a><br>
+    <a href="<?php echo site_url('login/logout') ?>">Logout</a>
+
 </div>

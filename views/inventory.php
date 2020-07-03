@@ -9,12 +9,7 @@
 <div class="col-md-12" align="center">
 	<p style="font-size: 30px;">GBD<sub>Admin</sub></p>
 </div>
-<div class="col-md-2">
-	<a href="<?php echo site_url('home/orders'); ?>">Orders</a><br>
-	<a href="<?php echo site_url('home/inventory') ?>">Inventory</a>
-</div>
-
-<div class="col-md-10">
+<div class="col-md-12">
 	<a href="<?php echo site_url('home/addbook') ?>">Add Book</a>
 	<table class="table table-responsive" style="margin-top: 50px;" id="table">
     <thead>
@@ -31,6 +26,9 @@
         <th>Medium</th>
         <th>MRP</th>
         <th>Discount</th>
+              <th>Shipping Charges</th>
+              <th>Availability</th>
+              <th>Modified</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -49,6 +47,9 @@
         <td><?php echo $book->Medium; ?></td>
         <td><?php echo $book->MRP; ?></td>
         <td><?php echo $book->Discount; ?></td>
+          <td><?php echo $book->charges; ?></td>
+          <td><?php echo $book->availability ?"In Stock" : "Out of Stock";  ?></td>
+          <td><?php echo $book->Timestamp; ?></td>
         <td><i class="glyphicon glyphicon-wrench" style="cursor: pointer;" onclick="location.href='<?php echo site_url('home/editbook/').$book->id; ?>'" title="Edit book"></i> <i class="glyphicon glyphicon-trash" style="cursor: pointer" onclick="myFunction(<?php echo $book->id; ?>)" title="Delete Book"></i></td>
       </tr>
     <?php } ?>

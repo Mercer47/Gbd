@@ -29,6 +29,8 @@
                     <option value="0">English</option>
                     <option value="1">Hindi</option>
                 </select>
+                <p>Shipping Charges</p>
+                <input type="text" name="charges" />
 
             </div>
             <div class="col-md-4" align="left">
